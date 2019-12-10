@@ -11,20 +11,20 @@ namespace PlanetarySurfaceStructures
     public class SurfaceStructuresCategoryFilter : MonoBehaviour
     {
         //create and the icons
-        private Texture2D icon_surface_structures = new Texture2D(32, 32, TextureFormat.ARGB32, false);
-        private Texture2D icon_category_ls = new Texture2D(32, 32, TextureFormat.ARGB32, false);
+        private Texture2D icon_surface_structures;
+        private Texture2D icon_category_ls;
 
-        private Texture2D icon_filter_pods = new Texture2D(32, 32, TextureFormat.ARGB32, false);
-        private Texture2D icon_filter_engine = new Texture2D(32, 32, TextureFormat.ARGB32, false);
-        private Texture2D icon_filter_fuel = new Texture2D(32, 32, TextureFormat.ARGB32, false);
-        private Texture2D icon_filter_payload = new Texture2D(32, 32, TextureFormat.ARGB32, false);
-        private Texture2D icon_filter_construction = new Texture2D(32, 32, TextureFormat.ARGB32, false);
-        private Texture2D icon_filter_coupling = new Texture2D(32, 32, TextureFormat.ARGB32, false);
-        private Texture2D icon_filter_electrical = new Texture2D(32, 32, TextureFormat.ARGB32, false);
-        private Texture2D icon_filter_ground = new Texture2D(32, 32, TextureFormat.ARGB32, false);
-        private Texture2D icon_filter_utility = new Texture2D(32, 32, TextureFormat.ARGB32, false);
-        private Texture2D icon_filter_science = new Texture2D(32, 32, TextureFormat.ARGB32, false);
-        private Texture2D icon_filter_thermal = new Texture2D(32, 32, TextureFormat.ARGB32, false);
+        private Texture2D icon_filter_pods;
+        private Texture2D icon_filter_engine;
+        private Texture2D icon_filter_fuel;
+        private Texture2D icon_filter_payload;
+        private Texture2D icon_filter_construction;
+        private Texture2D icon_filter_coupling;
+        private Texture2D icon_filter_electrical;
+        private Texture2D icon_filter_ground;
+        private Texture2D icon_filter_utility;
+        private Texture2D icon_filter_science;
+        private Texture2D icon_filter_thermal;
 
         internal string iconName = "PlanetaryBaseSystemsEditor";
         internal bool filter = true;
@@ -61,6 +61,8 @@ namespace PlanetarySurfaceStructures
             }
             Instance = this;
             DontDestroyOnLoad(this);
+
+            InitializeIcons();
 
             //search for Community Category Kit
             int numAssemblies = AssemblyLoader.loadedAssemblies.Count;
@@ -111,7 +113,7 @@ namespace PlanetarySurfaceStructures
                 icon_filter_science = GameDatabase.Instance.GetTexture("PlanetaryBaseInc/BaseSystem/Icons/filter_science", false);
                 icon_filter_thermal = GameDatabase.Instance.GetTexture("PlanetaryBaseInc/BaseSystem/Icons/filter_thermal", false);
 
-                icon_surface_structures = GameDatabase.Instance.GetTexture("PlanetaryBaseInc/BaseSystem/Icons/KPBSicon", false); 
+                icon_surface_structures = GameDatabase.Instance.GetTexture("PlanetaryBaseInc/BaseSystem/Icons/KPBSicon", false);
                 icon_category_ls = GameDatabase.Instance.GetTexture("PlanetaryBaseInc/BaseSystem/Icons/KPBSCategoryLifeSupport", false);
 
 
@@ -185,7 +187,7 @@ namespace PlanetarySurfaceStructures
                 {
                     Debug.LogError("[KPBS] ERROR loading: " + errors);
                 }
-                
+
             }
             catch (Exception e)
             {
@@ -197,6 +199,27 @@ namespace PlanetarySurfaceStructures
             GameEvents.OnGameSettingsApplied.Add(updateFilterSettings);
         }
 
+        /// <summary>
+        /// Initializes the icons, called from the Awake() method.  Texture2D vars have
+        /// to be initialized inside either an Awake, Start, or OnGUI
+        /// </summary>
+        void InitializeIcons()
+        {
+            icon_surface_structures = new Texture2D(32, 32, TextureFormat.ARGB32, false);
+            icon_category_ls = new Texture2D(32, 32, TextureFormat.ARGB32, false);
+
+            icon_filter_pods = new Texture2D(32, 32, TextureFormat.ARGB32, false);
+            icon_filter_engine = new Texture2D(32, 32, TextureFormat.ARGB32, false);
+            icon_filter_fuel = new Texture2D(32, 32, TextureFormat.ARGB32, false);
+            icon_filter_payload = new Texture2D(32, 32, TextureFormat.ARGB32, false);
+            icon_filter_construction = new Texture2D(32, 32, TextureFormat.ARGB32, false);
+            icon_filter_coupling = new Texture2D(32, 32, TextureFormat.ARGB32, false);
+            icon_filter_electrical = new Texture2D(32, 32, TextureFormat.ARGB32, false);
+            icon_filter_ground = new Texture2D(32, 32, TextureFormat.ARGB32, false);
+            icon_filter_utility = new Texture2D(32, 32, TextureFormat.ARGB32, false);
+            icon_filter_science = new Texture2D(32, 32, TextureFormat.ARGB32, false);
+            icon_filter_thermal = new Texture2D(32, 32, TextureFormat.ARGB32, false);
+        }
         /// <summary>
         /// Removes all listeners from the GameEvents when Class is destroyed
         /// </summary>
@@ -275,7 +298,8 @@ namespace PlanetarySurfaceStructures
                 List<AvailablePart> parts = PartLoader.Instance.loadedParts.FindAll(ap => ap.name.StartsWith("KKAOSS"));
                 for (int i = 0; i < parts.Count; i++)
                 {
-                    if (partCategories.ContainsKey(parts[i].name)) { 
+                    if (partCategories.ContainsKey(parts[i].name))
+                    {
                         parts[i].category = partCategories[parts[i].name];
                     }
                 }
@@ -400,7 +424,7 @@ namespace PlanetarySurfaceStructures
                 RUI.Icons.Selectable.Icon ic_lifeSupport = new RUI.Icons.Selectable.Icon("KKAOSS_icon_KPSS", icon_category_ls, icon_category_ls, true);
 
                 //add KPBS to the categories
-                PartCategorizer.Category surfaceStructureFilter = KSP.UI.Screens.PartCategorizer.AddCustomFilter("Planetary Surface Structures", functionFilterName,  filterIconSurfaceStructures, new Color(0.63f, 0.85f, 0.63f));
+                PartCategorizer.Category surfaceStructureFilter = KSP.UI.Screens.PartCategorizer.AddCustomFilter("Planetary Surface Structures", functionFilterName, filterIconSurfaceStructures, new Color(0.63f, 0.85f, 0.63f));
 
                 //add subcategories to the KPSS category you just added
                 PartCategorizer.AddCustomSubcategoryFilter(surfaceStructureFilter, "Pods", Localizer.GetStringByTag("#autoLOC_453549"), ic_pods, p => filterCategories(p, PartCategories.Pods));
