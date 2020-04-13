@@ -1,3 +1,26 @@
+# v1.6.11
+**General:**
+
+* Recompile for KSP 1.9.1
+* Updated KSPModFileLocalizer to version 0.2.3.5
+
+**Localization:**
+
+* Updated chinese translation (thanks to [WC12366](https://github.com/WC12366))
+
+**Mod Support:**
+
+* Added whitelist for Restock (thanks to [Rafael acevedo](https://forum.kerbalspaceprogram.com/index.php?/profile/84946-rafael-acevedo/))
+* Added specialist bonus to TAC-LS converters
+* Updated OSE support
+
+**Bug Fixes:**
+
+* Fixed potential crash from plugin when loading images (thanks to [LinuxGuruGamer](https://forum.kerbalspaceprogram.com/index.php?/profile/129964-linuxgurugamer/))
+* Fixed dry mass of some tanks to avoid negative mass for cryo tanks
+
+
+
 # v1.6.10
 **General:**
 
