@@ -1,3 +1,14 @@
+# v1.6.12
+**General:**
+
+* Recompile for KSP 1.10.0
+* Updated KSPModFileLocalizer to version 0.2.3.6
+* Updated CCK to version 5.1.0.0
+
+**Mod Support:**
+
+* Updated OSE Workshop support (Drill for Exotic Minerals etc.)
+
 # v1.6.11
 **General:**
 
