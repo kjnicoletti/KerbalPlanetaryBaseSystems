@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using System.Collections.Generic;
 using UnityEngine;
 using KSP.UI.Screens;
@@ -25,6 +24,7 @@ namespace PlanetarySurfaceStructures
         private Texture2D icon_filter_utility;
         private Texture2D icon_filter_science;
         private Texture2D icon_filter_thermal;
+        private Texture2D icon_filter_cargo;
 
         internal string iconName = "PlanetaryBaseSystemsEditor";
         internal bool filter = true;
@@ -112,6 +112,7 @@ namespace PlanetarySurfaceStructures
                 icon_filter_utility = GameDatabase.Instance.GetTexture("PlanetaryBaseInc/BaseSystem/Icons/filter_utility", false);
                 icon_filter_science = GameDatabase.Instance.GetTexture("PlanetaryBaseInc/BaseSystem/Icons/filter_science", false);
                 icon_filter_thermal = GameDatabase.Instance.GetTexture("PlanetaryBaseInc/BaseSystem/Icons/filter_thermal", false);
+                icon_filter_cargo = GameDatabase.Instance.GetTexture("PlanetaryBaseInc/BaseSystem/Icons/filter_cargo", false);
 
                 icon_surface_structures = GameDatabase.Instance.GetTexture("PlanetaryBaseInc/BaseSystem/Icons/KPBSicon", false);
                 icon_category_ls = GameDatabase.Instance.GetTexture("PlanetaryBaseInc/BaseSystem/Icons/KPBSCategoryLifeSupport", false);
@@ -219,6 +220,7 @@ namespace PlanetarySurfaceStructures
             icon_filter_utility = new Texture2D(32, 32, TextureFormat.ARGB32, false);
             icon_filter_science = new Texture2D(32, 32, TextureFormat.ARGB32, false);
             icon_filter_thermal = new Texture2D(32, 32, TextureFormat.ARGB32, false);
+            icon_filter_cargo = new Texture2D(32, 32, TextureFormat.ARGB32, false);
         }
         /// <summary>
         /// Removes all listeners from the GameEvents when Class is destroyed
@@ -420,11 +422,13 @@ namespace PlanetarySurfaceStructures
                 RUI.Icons.Selectable.Icon ic_ground = new RUI.Icons.Selectable.Icon("KKAOSS_filter_ground", icon_filter_ground, icon_filter_ground, true);
                 RUI.Icons.Selectable.Icon ic_thermal = new RUI.Icons.Selectable.Icon("KKAOSS_filter_thermal", icon_filter_thermal, icon_filter_thermal, true);
                 RUI.Icons.Selectable.Icon ic_electrical = new RUI.Icons.Selectable.Icon("KKAOSS_filter_electrical", icon_filter_electrical, icon_filter_electrical, true);
+                RUI.Icons.Selectable.Icon ic_cargo = new RUI.Icons.Selectable.Icon("KKAOSS_filter_carog", icon_filter_cargo, icon_filter_cargo, true);
                 RUI.Icons.Selectable.Icon ic_science = new RUI.Icons.Selectable.Icon("KKAOSS_filter_fuel", icon_filter_science, icon_filter_science, true);
                 RUI.Icons.Selectable.Icon ic_lifeSupport = new RUI.Icons.Selectable.Icon("KKAOSS_icon_KPSS", icon_category_ls, icon_category_ls, true);
 
+
                 //add KPBS to the categories
-                PartCategorizer.Category surfaceStructureFilter = KSP.UI.Screens.PartCategorizer.AddCustomFilter("Planetary Surface Structures", functionFilterName, filterIconSurfaceStructures, new Color(0.63f, 0.85f, 0.63f));
+                PartCategorizer.Category surfaceStructureFilter = PartCategorizer.AddCustomFilter("Planetary Surface Structures", functionFilterName, filterIconSurfaceStructures, new Color(0.63f, 0.85f, 0.63f));
 
                 //add subcategories to the KPSS category you just added
                 PartCategorizer.AddCustomSubcategoryFilter(surfaceStructureFilter, "Pods", Localizer.GetStringByTag("#autoLOC_453549"), ic_pods, p => filterCategories(p, PartCategories.Pods));
@@ -437,6 +441,7 @@ namespace PlanetarySurfaceStructures
                 PartCategorizer.AddCustomSubcategoryFilter(surfaceStructureFilter, "Thermal", Localizer.GetStringByTag("#autoLOC_453576"), ic_thermal, p => filterCategories(p, PartCategories.Thermal));
                 PartCategorizer.AddCustomSubcategoryFilter(surfaceStructureFilter, "Electrical", Localizer.GetStringByTag("#autoLOC_453579"), ic_electrical, p => filterCategories(p, PartCategories.Electrical));
                 PartCategorizer.AddCustomSubcategoryFilter(surfaceStructureFilter, "Science", Localizer.GetStringByTag("#autoLOC_453585"), ic_science, p => filterCategories(p, PartCategories.Science));
+                PartCategorizer.AddCustomSubcategoryFilter(surfaceStructureFilter, "Cargo", Localizer.GetStringByTag("#autoLOC_8320001"), ic_cargo, p => filterCategories(p, PartCategories.Cargo));
 
                 if (lifeSupportAvailable)
                 {

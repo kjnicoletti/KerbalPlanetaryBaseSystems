@@ -1,3 +1,31 @@
+# v1.6.13
+**General:**
+
+* Recompile for KSP 1.11.2
+* Updated KSPModFileLocalizer to version 0.2.3.7
+* Updated CCK to version 5.2.0.0
+* Updated CRP to version 1.4.2
+
+**Localization:**
+
+* Fixed typos in english and german texts. Thanks to [Grimmas](https://forum.kerbalspaceprogram.com/index.php?/profile/207818-grimmas/)
+
+**Enhancements:**
+
+* Added support for inventory and construction features from KSP 1.11
+* Added four new storage container for inventories
+
+**Mod Support:**
+
+* Added support for the freezer of USI-LS Thanks. to [Grimmas](https://forum.kerbalspaceprogram.com/index.php?/profile/207818-grimmas/)
+* Improved compatibility and support for MKS. Thanks to [Grimmas](https://forum.kerbalspaceprogram.com/index.php?/profile/207818-grimmas/)
+
+**Bug Fixes:**
+
+* Fixed crash for OSx Catalina when loading PNG files
+* Some config fixed for NEED and FOR for ModuleManager. Thanks to [HSJasperism](https://github.com/HSJasperism)
+* Fixes for CTT support for the KIS Tank. Thanks to [hemeac](https://github.com/hemeac)
+
 # v1.6.12
 **General:**
 
