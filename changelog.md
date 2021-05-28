@@ -1,3 +1,8 @@
+# v1.6.14
+**Enhancements:**
+
+* Added support for inventory and construction features from KSP 1.11 (this time really)
+
 # v1.6.13
 **General:**
 
