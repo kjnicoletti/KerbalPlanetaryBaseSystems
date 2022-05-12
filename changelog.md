@@ -1,3 +1,8 @@
+# v1.6.16
+**Mod Support:**
+
+* Fixed compatibility issues with Simple Repaint
+
 # v1.6.15
 **General:**
 
