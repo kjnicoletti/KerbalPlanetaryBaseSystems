@@ -2,6 +2,7 @@
 **Mod Support:**
 
 * Fixed compatibility issues with Simple Repaint
+* Fixed mass of Recycler for EPL
 
 # v1.6.15
 **General:**
